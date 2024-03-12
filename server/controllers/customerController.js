@@ -85,9 +85,7 @@ exports.postCustomer = async (req, res) => {
  */
 exports.view = async (req, res) => {
   try {
-    const customer = await Customer.findOne({ _id: req.params.id })
-    .populate('department')
-      .populate('destination');
+    const customer = await Customer.findOne({ _id: req.params.id });
 
     const locals = {
       title: "View Customer Data",
@@ -130,27 +128,24 @@ exports.edit = async (req, res) => {
  * Update Customer Data
  */
 exports.editPost = async (req, res) => {
-  const { firstName, lastName, tel, email, details, department, destination } = req.body;
   try {
     await Customer.findByIdAndUpdate(req.params.id, {
-      firstName,
-      lastName,
-      tel,
-      email,
-      details,
-      department, // Assuming this is the ObjectId of the department
-      destination, // Assuming this is the ObjectId of the destination
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
+      tel: req.body.tel,
+      email: req.body.email,
+      details: req.body.details,
       updatedAt: Date.now(),
+      department: req.body.department,
+      destination: req.body.destination
     });
+    await res.redirect(`/edit/${req.params.id}`);
 
-    await req.flash("info", "Customer updated successfully.");
-    res.redirect(`/view/${req.params.id}`);
+    console.log("redirected");
   } catch (error) {
-    console.error(error);
-    res.status(500).send("An error occurred while updating the customer.");
+    console.log(error);
   }
 };
-
 
 /**
  * Delete /

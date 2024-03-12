@@ -40,6 +40,33 @@
 
   <div class="row form-group mb-4">
     <div class="col">
+      <label for="addressLine">Address Line</label>
+      <input type="text" class="form-control" id="addressLine" name="addressLine" value="<%= customer.addressLine %>" placeholder="Address Line" required>
+    </div>
+    <div class="col">
+      <label for="barangay">Barangay</label>
+      <input type="text" class="form-control" id="barangay" name="barangay" value="<%= customer.barangay %>" placeholder="Barangay" required>
+    </div>
+  </div>
+  <div class="row form-group mb-4">
+    <div class="col">
+      <label for="province">Province</label>
+      <input type="text" class="form-control" id="province" name="province" value="<%= customer.province %>" placeholder="Province" required>
+    </div>
+    <div class="col">
+      <label for="country">Country</label>
+      <input type="text" class="form-control" id="country" name="country" value="<%= customer.country %>" placeholder="Country" required>
+    </div>
+  </div>
+  <div class="row form-group mb-4">
+    <div class="col">
+      <label for="zipcode">Zipcode</label>
+      <input type="text" class="form-control" id="zipcode" name="zipcode" value="<%= customer.zipcode %>" placeholder="Zipcode" required>
+    </div>
+  </div>
+
+  <div class="row form-group mb-4">
+    <div class="col">
       <label for="tel">Telephone</label>
       <input type="text" class="form-control" id="tel" name="tel" value="<%= customer.tel %>" placeholder="Telephone" required>
     </div>
@@ -67,6 +94,8 @@
       <select class="form-control" id="destination" name="destination" required>
         <option value="">Select Status</option>
         <option value="Active" <%= customer.department === 'Active' ? 'selected' : '' %>>Active</option>
+        <option value="PartTime" <%= customer.department === 'PartTime' ? 'selected' : '' %>>Part Time</option>
+        <option value="Probation" <%= customer.department === 'Probation' ? 'selected' : '' %>>Probation</option>
         <option value="Resigned" <%= customer.department === 'Resigned' ? 'selected' : '' %>>Resigned</option>
         <option value="Awol" <%= customer.department === 'Awol' ? 'selected' : '' %>>Awol</option>
         <!-- Add more options as needed -->
